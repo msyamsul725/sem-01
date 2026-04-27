@@ -1,0 +1,42 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Menjalankan build setiap ada push (termasuk saat n8n update config)
+
+permissions:
+  contents: write  # Izin wajib agar bot bisa push hasil build ke branch gh-pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Ambil kode dari repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Setup environment Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          
+
+      # 3. Ambil dependencies
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # 4. Build Flutter Web
+      # --base-href digunakan agar path CSS/JS sesuai dengan nama sub-folder repo di github.io
+      - name: Build Web
+        run: flutter build web --release --base-href /${{ github.event.repository.name }}/
+
+      # 5. Deploy hasil build ke branch gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          publish_branch: gh-pages
