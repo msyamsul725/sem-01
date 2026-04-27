@@ -1,17 +1,4 @@
 {
-  "company_name": "oke",
-  "tagline": "Strategic Business Partner",
-  "description": "Kami hadir memberikan solusi profesional untuk kebutuhan bisnis Anda melalui strategi, teknologi, dan eksekusi yang terukur.",
-  "address": "test",
-  "phone": "+62 812 3456 7890",
-  "whatsapp": "+62 812 3456 7890",
-  "email": "hello@oke.co.id",
-  "website": "www.oke.co.id",
-  "company_photo": "",
-  "services": [
-    "Business Strategy",
-    "Digital Transformation",
-    "Brand & Marketing Advisory"
-  ],
-  "gallery": []
+  "company_name": "SMG TECH",
+  "address": "KARAWANG"
 }
